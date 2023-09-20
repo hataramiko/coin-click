@@ -172,7 +172,7 @@ MonoBehaviour:
   - {fileID: 8396150739172990405, guid: d972ba4b109bee24ba672232904e81d8, type: 3}
   - {fileID: 3985802431127576206, guid: 6b7b9ad94cad7f0479506cd11344ab0a, type: 3}
   - {fileID: 8978005145080160538, guid: 1558616fc1d386d478857fa03d11cb07, type: 3}
-  CoinLimit: 10
+  SpawnInterval: 1
   MinimumPos: {x: -1.5, y: -4}
   MaximumPos: {x: 1.5, y: 4}
 --- !u!4 &699861719 stripped

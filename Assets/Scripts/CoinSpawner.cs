@@ -4,33 +4,21 @@ using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-    bool isEnabled;
-
     public GameObject[] Coins;
-    public int CoinLimit;
+    public float SpawnInterval;
     public Vector2 MinimumPos;
     public Vector2 MaximumPos;
 
     void Awake()
     {
-        isEnabled = false;
+        StartCoroutine(SpawnCoins(SpawnInterval));
     }
 
-    void Update()
+    IEnumerator SpawnCoins(float interval)
     {
-        if(Input.GetKeyDown("enter"))
-        {
-            SpawnCoin();
-        }
-
-        if (Input.GetKeyDown("space") && isEnabled != true)
-        {
-            EnableSpawner();
-        }
-        else if(Input.GetKeyDown("space") && isEnabled == true)
-        {
-            DisableSpawner();
-        }
+        yield return new WaitForSeconds(interval);
+        SpawnCoin();
+        StartCoroutine(SpawnCoins(SpawnInterval));
     }
 
     void InstantiateCoin(int coinValue, Vector2 position)
@@ -52,28 +40,5 @@ public class CoinSpawner : MonoBehaviour
     {
         Vector2 position = GetRandomPosition();
         InstantiateCoin(Random.Range(0, Coins.Length), position);
-    }
-
-    public void EnableSpawner()
-    {
-        isEnabled = true;
-        int i = 0;
-
-        Debug.Log("Coin Spawner enabled.");
-
-        while(i < CoinLimit)
-        {
-            SpawnCoin();
-            i++;
-        }
-
-        //DisableSpawner();
-    }
-
-    public void DisableSpawner()
-    {
-        isEnabled = false;
-
-        Debug.Log("Coin Spawner disabled.");
     }
 }
