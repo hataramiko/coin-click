@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9178462437239646943}
+  - component: {fileID: 2446789482448953583}
   - component: {fileID: 6864301396442165208}
   - component: {fileID: 1830018386960898579}
   - component: {fileID: 2498382009448867371}
@@ -28,12 +29,28 @@ Transform:
   m_GameObject: {fileID: 8396150739172990405}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1263448, y: 1.12117, z: -0.031647462}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2446789482448953583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8396150739172990405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf64be4f0fa763145a3863e213451894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vertexCount: 4
+  _targetScale: {x: 0.5, y: 0.5, z: 0.5}
+  _entryDuration: 1
+  _exitDuration: 5
 --- !u!212 &6864301396442165208
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -101,7 +118,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
