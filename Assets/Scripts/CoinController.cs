@@ -10,10 +10,20 @@ public class CoinController : MonoBehaviour, IPointerClickHandler
     [SerializeField] Vector3 _targetScale;
     [SerializeField] float _entryDuration;
     [SerializeField] float _exitDuration;
+
+    GameObject _logic;
+    CoinSpawner _spawner;
+    ScoreSystem _scoreSystem;
+
     bool isCircle;
 
     void Awake()
     {
+        _logic = GameObject.Find("Logic");
+        _spawner = _logic.GetComponent<CoinSpawner>();
+        _scoreSystem = _logic.GetComponent<ScoreSystem>();
+        // Debug.Log(_scoreSystem);
+
         CheckVertices();
         SetRotation();
         StartCoroutine(ScaleUp());
@@ -59,6 +69,13 @@ public class CoinController : MonoBehaviour, IPointerClickHandler
         }
 
         // Destroys the coin after scale has been reduced to 0.
+        // Also checks if the coin was circular, in which case HP is reduced by 1.
+
+        if (_vertexCount == 0)
+        {
+            _scoreSystem.DecreaseHealth(1);
+        }
+
         transform.localScale = newTargetScale;
         DestroyCoin();
     }
@@ -134,11 +151,16 @@ public class CoinController : MonoBehaviour, IPointerClickHandler
 
         if (isCircle == true)
         {
-            Debug.Log("Circle. +1");
+            // Debug.Log("Circle. +1");
+
+            _spawner.DecreaseInterval();
+            _scoreSystem.IncreaseScore();
         }
         else if (isCircle != true)
         {
-            Debug.Log("Polygon. -" + _vertexCount);
+            // Debug.Log("Polygon. -" + _vertexCount);
+
+            _scoreSystem.DecreaseHealth(_vertexCount);
         }
         else
         {

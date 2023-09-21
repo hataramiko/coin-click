@@ -6,6 +6,8 @@ public class CoinSpawner : MonoBehaviour
 {
     public GameObject[] Coins;
     public float SpawnInterval;
+    public float MinimumInterval;
+    public int IntervalModifier;
     public Vector2 MinimumPos;
     public Vector2 MaximumPos;
 
@@ -17,7 +19,10 @@ public class CoinSpawner : MonoBehaviour
     IEnumerator SpawnCoins(float interval)
     {
         yield return new WaitForSeconds(interval);
+        
         SpawnCoin();
+        // DecreaseInterval();
+
         StartCoroutine(SpawnCoins(SpawnInterval));
     }
 
@@ -35,10 +40,25 @@ public class CoinSpawner : MonoBehaviour
 
         return randomPosition;
     }
-
     public void SpawnCoin()
     {
         Vector2 position = GetRandomPosition();
         InstantiateCoin(Random.Range(0, Coins.Length), position);
+    }
+
+    public void DecreaseInterval()
+    {
+        float newSpawnInterval;
+
+        newSpawnInterval = SpawnInterval - SpawnInterval / IntervalModifier;
+
+        if (newSpawnInterval < MinimumInterval)
+        {
+            SpawnInterval = MinimumInterval;
+        }
+        else
+        {
+            SpawnInterval = newSpawnInterval;
+        }
     }
 }
