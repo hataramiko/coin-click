@@ -54,5 +54,6 @@ public class UIManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Main");
+        Time.timeScale = 1.0f;
     }
 }
